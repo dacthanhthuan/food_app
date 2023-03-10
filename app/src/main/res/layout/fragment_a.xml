@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.FragmentA">
+
+   <EditText
+       android:id="@+id/home_edtSearch"
+       android:layout_width="300dp"
+       android:layout_height="wrap_content"
+       android:layout_marginHorizontal="20dp"
+       android:layout_marginVertical="20dp"
+       android:layout_marginTop="16dp"
+       android:background="@drawable/design_search"
+       android:drawableLeft="@drawable/search"
+       android:drawablePadding="5dp"
+       android:hint="Tìm món ăn yêu thích"
+       android:textColorHint="#2B2222"
+       android:minHeight="48dp"
+       android:padding="10dp"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.0"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
+
+   <ImageView
+       android:id="@+id/speakButton"
+       android:layout_width="35dp"
+       android:layout_height="35dp"
+       android:layout_marginTop="25dp"
+       android:src="@drawable/voice"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.776"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
+
+   <ImageView
+       android:id="@+id/shop_cart1"
+       android:layout_width="35dp"
+       android:layout_height="35dp"
+       android:layout_marginTop="25dp"
+       android:src="@drawable/cart"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.486"
+       app:layout_constraintStart_toEndOf="@+id/home_edtSearch"
+       app:layout_constraintTop_toTopOf="parent" />
+
+   <androidx.constraintlayout.widget.Guideline
+       android:id="@+id/home_guidline"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       app:layout_constraintGuide_percent="0.35" />
+
+   <androidx.viewpager2.widget.ViewPager2
+       android:id="@+id/slides_FHome"
+       android:layout_width="0dp"
+       android:layout_height="0dp"
+       android:layout_marginTop="10dp"
+       android:shadowColor="#666666"
+       android:shadowDx="20"
+       android:shadowDy="20"
+       android:shadowRadius="10"
+       app:layout_constraintBottom_toTopOf="@id/home_guidline"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.0"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@id/home_edtSearch"
+       app:layout_constraintVertical_bias="1.0" />
+
+   <me.relex.circleindicator.CircleIndicator3
+       android:id="@+id/circle_FHome"
+       android:layout_width="wrap_content"
+       android:layout_height="40dp"
+       android:layout_marginLeft="265dp"
+       android:layout_marginBottom="130dp"
+       app:ci_drawable="@drawable/indicator"
+       app:layout_constraintBottom_toTopOf="@+id/home_guidline"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent" />
+
+   <androidx.recyclerview.widget.RecyclerView
+       android:id="@+id/rvChude"
+       android:layout_width="match_parent"
+       android:layout_height="80dp"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="@+id/home_guidline" />
+
+   <TextView
+       android:id="@+id/textView2"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_margin="10dp"
+       android:padding="5dp"
+       android:fontFamily="sans-serif"
+       android:text="Món Ăn"
+       android:textColor="@color/black"
+       android:textStyle="italic|bold"
+       android:textSize="30sp"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@id/rvChude" />
+
+   <androidx.recyclerview.widget.RecyclerView
+       android:id="@+id/rvSanpham"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       app:layout_constraintEnd_toEndOf="parent"
+       android:layout_marginTop="10dp"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
