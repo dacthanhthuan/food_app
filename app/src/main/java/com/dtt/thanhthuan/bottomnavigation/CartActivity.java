@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,13 +17,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dtt.thanhthuan.bottomnavigation.ADAPTER.ADAPTER_CART;
 import com.dtt.thanhthuan.bottomnavigation.model.SANPHAM;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class CartActivity extends AppCompatActivity {
     public TextView cart_total;
-
+    private Button checkout;
     private RecyclerView rvCart;
     private ADAPTER_CART adapter_cart;
     private Context context;
@@ -40,6 +44,7 @@ public class CartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
         cart_total = findViewById(R.id.cart_total);
+        checkout = findViewById(R.id.checkout);
         rvCart = findViewById(R.id.rvCart);
 
         context = this;
@@ -54,7 +59,6 @@ public class CartActivity extends AppCompatActivity {
 
         dataSP = new ArrayList<>();
         dbHelper = new DBHelper(this);
-//        long id = dbHelper.insertProduct(iD, name, image, Integer.parseInt(price), quantity);
         dbHelper.updateProductQuantityById(iD, quantity);
         dataSP = dbHelper.layALLSP();
 
@@ -69,6 +73,18 @@ public class CartActivity extends AppCompatActivity {
             totalPrice += sp.getGiasanpham() * sp.getSoluong();
         }
         cart_total.setText(formatPrice.format(totalPrice) + " Đ");
+
+        // chuyển sang màn hình CHECKOUT
+        double finalTotalPrice = totalPrice;
+        checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CartActivity.this, CheckOutActivity.class);
+                intent.putExtra("tt", finalTotalPrice);
+                startActivity(intent);
+
+            }
+        });
     }
 
     //  Phương thức cập nhật lại số tiền sau khi XÓA SẢN PHẨM, TĂNG OR GIẢM SỐ LƯỢNG

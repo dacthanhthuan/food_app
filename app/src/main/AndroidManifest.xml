@@ -3,21 +3,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.dtt.thanhthuan.bottomnavigation">
 
+    <queries>
+        <provider android:authorities="com.facebook.katana.provider.PlatformProvider" /> <!-- allows app to access Facebook app features -->
+        <provider android:authorities="com.facebook.orca.provider.PlatformProvider" /> <!-- allows sharing to Messenger app -->
+    </queries>
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission
+        android:name="com.google.android.gms.permission.AD_ID"
+        tools:node="remove" />
 
+    <meta-data
+        android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
+        android:value="false" />
     <application
+        android:name=".fcm.PushNotification"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/fastfood"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/fastfood"
         android:supportsRtl="true"
         android:theme="@style/Theme.Bottomnavigation"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".CheckOutActivity"
+            android:exported="false" />
+
+        <service
+            android:name=".fcm.MessageFirebase"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
@@ -40,9 +64,7 @@
             android:name=".BottomNavigation"
             android:exported="false"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Bottomnavigation.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.Bottomnavigation.NoActionBar"></activity>
         <activity
             android:name=".SplashScreen"
             android:exported="true"
@@ -65,6 +87,34 @@
         <activity
             android:name=".ProductByCategory"
             android:exported="false" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/facebook_client_token" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

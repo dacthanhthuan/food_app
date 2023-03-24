@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -18,7 +19,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.dtt.thanhthuan.bottomnavigation.ui.FragmentA;
 import com.dtt.thanhthuan.bottomnavigation.ui.FragmentD;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -26,6 +34,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -35,16 +44,19 @@ public class LoginActivity extends AppCompatActivity {
     private EditText edtEmail, edtPassword;
     public String email, password;
     private Button btnLogin, btn_Chuyentrang;
-    private String URL = "http://192.168.100.13/sqlfood/login.php";
-    ImageView btnGG;
+    private String URL = "http://192.168.1.12/sqlfood/login.php";
+    LinearLayout btnGG, btnFB;
 
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
+
+    CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
         email = password = "";
         edtEmail = findViewById(R.id.edtL_Email);
@@ -52,8 +64,47 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         btn_Chuyentrang = findViewById(R.id.btn_Chuyentrang);
         btnGG = findViewById(R.id.btnGG);
+        btnFB = findViewById(R.id.btnFB);
 
 
+        // Đăng nhập with FACEBOOK
+        callbackManager = CallbackManager.Factory.create();
+
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        if (accessToken != null && accessToken.isExpired() == false){
+            startActivity(new Intent(LoginActivity.this, BottomNavigation.class));
+            finish();
+        }
+
+            LoginManager.getInstance().registerCallback(callbackManager,
+                    new FacebookCallback<LoginResult>() {
+                        @Override
+                        public void onSuccess(LoginResult loginResult) {
+                            // App code
+                            startActivity(new Intent(LoginActivity.this, BottomNavigation.class));
+                            finish();
+                        }
+
+                        @Override
+                        public void onCancel() {
+                            // App code
+                        }
+
+                        @Override
+                        public void onError(FacebookException exception) {
+                            // App code
+                        }
+                    });
+
+        // Đăng nhập with FACEBOOK
+        btnFB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Arrays.asList("public_profile"));
+            }
+        });
+
+        // Đăng nhập with GMAIL
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         gsc = GoogleSignIn.getClient(this, gso);
 
@@ -64,6 +115,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
+        // Đăng nhập từ dữ liệu Database
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,7 +130,6 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this, BottomNavigation.class);
                                 intent.putExtra("email", email);
-                                intent.putExtra("password", password);
                                 startActivity(intent);
                                 finish();
                             } else if (response.equals("Failure")) {
@@ -101,12 +153,13 @@ public class LoginActivity extends AppCompatActivity {
                     };
                     RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
                     requestQueue.add(stringRequest);
-                }else{
+                } else {
                     Toast.makeText(LoginActivity.this, "Các trường không thể trống", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
+        // Chuyển sang trang Đăng ký
         btn_Chuyentrang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,7 +170,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    void signIn(){
+    void signIn() {
         Intent signInIntent = gsc.getSignInIntent();
         startActivityForResult(signInIntent, 1000);
     }
@@ -125,20 +178,23 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1000){
+        if (requestCode == 1000) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
-                task.getResult(ApiException.class);
+                GoogleSignInAccount account = task.getResult(ApiException.class);
                 navigateToSecondActivity();
             } catch (ApiException e) {
                 Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
             }
+        } else {
+            callbackManager.onActivityResult(requestCode, resultCode, data);
         }
     }
 
-    void navigateToSecondActivity(){
+    void navigateToSecondActivity() {
         finish();
         Intent intent = new Intent(LoginActivity.this, BottomNavigation.class);
         startActivity(intent);
     }
+
 }

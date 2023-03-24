@@ -3,6 +3,33 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/drawable/background_buttom.xml" value="0.192" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/drawable/background_buttom2.xml" value="0.192" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/drawable/bg_btn1.xml" value="0.192" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/drawable/bg_btn2.xml" value="0.192" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/drawable/bg_btn3.xml" value="0.192" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/drawable/bg_btn5.xml" value="0.192" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/drawable/bg_edt1.xml" value="0.192" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/drawable/bg_radius.xml" value="0.192" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/drawable/btn_logout.xml" value="0.192" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/layout/activity_bottom_navigation.xml" value="0.24635416666666668" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/layout/activity_cart.xml" value="0.24635416666666668" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/layout/activity_detail_product.xml" value="0.24635416666666668" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/layout/activity_get_started.xml" value="0.24635416666666668" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/layout/activity_lo_re.xml" value="0.24635416666666668" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/layout/activity_login.xml" value="0.24635416666666668" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/layout/activity_main.xml" value="0.24635416666666668" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/layout/activity_product_by_category.xml" value="0.24635416666666668" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/layout/activity_register.xml" value="0.24635416666666668" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/layout/fragment_a.xml" value="0.24635416666666668" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/layout/fragment_b.xml" value="0.24635416666666668" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/layout/fragment_d.xml" value="0.24635416666666668" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/layout/item_chude.xml" value="0.24635416666666668" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/layout/item_giohang.xml" value="0.24635416666666668" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/layout/item_sanpham.xml" value="0.24635416666666668" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/layout/item_sp.xml" value="0.24635416666666668" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/layout/slide_item.xml" value="0.24635416666666668" />
+        <entry key="..\:/DOAN/bottomnavigation/app/src/main/res/menu/bottom_nav_menu.xml" value="0.24635416666666668" />
         <entry key="..\:/HK5_CNTT/TKGDA/project/bottomnavigation/app/src/main/res/drawable/background_plash.xml" value="0.1355" />
         <entry key="..\:/HK5_CNTT/TKGDA/project/bottomnavigation/app/src/main/res/drawable/bottom_background.xml" value="0.142" />
         <entry key="..\:/HK5_CNTT/TKGDA/project/bottomnavigation/app/src/main/res/drawable/btn_addtocart.xml" value="0.1" />
@@ -23,7 +50,7 @@
         <entry key="..\:/HK5_CNTT/TKGDA/project/bottomnavigation/app/src/main/res/layout/activity_detail_product.xml" value="0.22" />
         <entry key="..\:/HK5_CNTT/TKGDA/project/bottomnavigation/app/src/main/res/layout/activity_get_started.xml" value="0.2" />
         <entry key="..\:/HK5_CNTT/TKGDA/project/bottomnavigation/app/src/main/res/layout/activity_lo_re.xml" value="0.1859375" />
-        <entry key="..\:/HK5_CNTT/TKGDA/project/bottomnavigation/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/HK5_CNTT/TKGDA/project/bottomnavigation/app/src/main/res/layout/activity_login.xml" value="0.18" />
         <entry key="..\:/HK5_CNTT/TKGDA/project/bottomnavigation/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/HK5_CNTT/TKGDA/project/bottomnavigation/app/src/main/res/layout/activity_product_by_category.xml" value="0.22" />
         <entry key="..\:/HK5_CNTT/TKGDA/project/bottomnavigation/app/src/main/res/layout/activity_register.xml" value="0.33" />
@@ -31,13 +58,35 @@
         <entry key="..\:/HK5_CNTT/TKGDA/project/bottomnavigation/app/src/main/res/layout/fragment_b.xml" value="0.22" />
         <entry key="..\:/HK5_CNTT/TKGDA/project/bottomnavigation/app/src/main/res/layout/fragment_d.xml" value="0.2" />
         <entry key="..\:/HK5_CNTT/TKGDA/project/bottomnavigation/app/src/main/res/layout/item_cart.xml" value="0.22" />
-        <entry key="..\:/HK5_CNTT/TKGDA/project/bottomnavigation/app/src/main/res/layout/item_chude.xml" value="0.2" />
+        <entry key="..\:/HK5_CNTT/TKGDA/project/bottomnavigation/app/src/main/res/layout/item_chude.xml" value="0.22" />
         <entry key="..\:/HK5_CNTT/TKGDA/project/bottomnavigation/app/src/main/res/layout/item_giohang.xml" value="0.18" />
         <entry key="..\:/HK5_CNTT/TKGDA/project/bottomnavigation/app/src/main/res/layout/item_sanpham.xml" value="0.19479166666666667" />
         <entry key="..\:/HK5_CNTT/TKGDA/project/bottomnavigation/app/src/main/res/layout/item_sp.xml" value="0.2" />
         <entry key="..\:/HK5_CNTT/TKGDA/project/bottomnavigation/app/src/main/res/layout/slide_item.xml" value="0.19895833333333332" />
         <entry key="..\:/HK5_CNTT/TKGDA/project/bottomnavigation/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2" />
         <entry key="..\:/HK5_CNTT/TKGDA/project/bottomnavigation/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.142" />
+        <entry key="..\:/Users/dacth/Downloads/bottomnavigation/app/src/main/res/drawable/background_buttom.xml" value="0.1345" />
+        <entry key="..\:/Users/dacth/Downloads/bottomnavigation/app/src/main/res/drawable/bg_btn1.xml" value="0.134" />
+        <entry key="..\:/Users/dacth/Downloads/bottomnavigation/app/src/main/res/drawable/bg_btn2.xml" value="0.134" />
+        <entry key="..\:/Users/dacth/Downloads/bottomnavigation/app/src/main/res/drawable/bg_btn3.xml" value="0.134" />
+        <entry key="..\:/Users/dacth/Downloads/bottomnavigation/app/src/main/res/drawable/bg_edt1.xml" value="0.134" />
+        <entry key="..\:/Users/dacth/Downloads/bottomnavigation/app/src/main/res/drawable/bg_radius.xml" value="0.134" />
+        <entry key="..\:/Users/dacth/Downloads/bottomnavigation/app/src/main/res/drawable/design_chude.xml" value="0.134" />
+        <entry key="..\:/Users/dacth/Downloads/bottomnavigation/app/src/main/res/drawable/design_search.xml" value="0.134" />
+        <entry key="..\:/Users/dacth/Downloads/bottomnavigation/app/src/main/res/drawable/ic_action_shop.xml" value="0.1345" />
+        <entry key="..\:/Users/dacth/Downloads/bottomnavigation/app/src/main/res/layout/activity_bottom_navigation.xml" value="0.2" />
+        <entry key="..\:/Users/dacth/Downloads/bottomnavigation/app/src/main/res/layout/activity_cart.xml" value="0.2" />
+        <entry key="..\:/Users/dacth/Downloads/bottomnavigation/app/src/main/res/layout/activity_check_out.xml" value="0.2" />
+        <entry key="..\:/Users/dacth/Downloads/bottomnavigation/app/src/main/res/layout/activity_product_by_category.xml" value="0.2" />
+        <entry key="..\:/Users/dacth/Downloads/bottomnavigation/app/src/main/res/layout/activity_register.xml" value="0.18" />
+        <entry key="..\:/Users/dacth/Downloads/bottomnavigation/app/src/main/res/layout/fragment_a.xml" value="0.2" />
+        <entry key="..\:/Users/dacth/Downloads/bottomnavigation/app/src/main/res/layout/fragment_b.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/dacth/Downloads/bottomnavigation/app/src/main/res/layout/fragment_c.xml" value="0.2" />
+        <entry key="..\:/Users/dacth/Downloads/bottomnavigation/app/src/main/res/layout/fragment_d.xml" value="0.2" />
+        <entry key="..\:/Users/dacth/Downloads/bottomnavigation/app/src/main/res/layout/item_chude.xml" value="0.2" />
+        <entry key="..\:/Users/dacth/Downloads/bottomnavigation/app/src/main/res/layout/item_giohang.xml" value="0.2" />
+        <entry key="..\:/Users/dacth/Downloads/bottomnavigation/app/src/main/res/layout/item_sanpham.xml" value="0.2" />
+        <entry key="..\:/Users/dacth/Downloads/bottomnavigation/app/src/main/res/layout/item_thongbao.xml" value="0.1" />
       </map>
     </option>
   </component>

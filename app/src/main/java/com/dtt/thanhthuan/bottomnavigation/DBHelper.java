@@ -34,7 +34,6 @@ public class DBHelper {
     }
 
     // Thêm sản phẩm vào giỏ hàng
-    // Thêm sản phẩm vào giỏ hàng
     public void insertProduct(String id, String name, String image, int price, int quantity) {
         Cursor cursor = db.query("CART", null, "MaSP=?", new String[]{id}, null, null, null);
 
@@ -49,7 +48,7 @@ public class DBHelper {
             db.update("CART", values, "MaSP=?", new String[]{id});
 
         } else {
-            // Product does not exist in cart, insert new row
+            // Nếu Sản phẩm không tồn tại trong giỏ hàng, thêm hàng mới
             ContentValues values = new ContentValues();
             values.put("MaSP", id);
             values.put("TenSP", name);
@@ -62,8 +61,6 @@ public class DBHelper {
 
         cursor.close();
     }
-
-
 
     // Xóa sản phẩm theo MaSP
     public void deleteProductById(String id) {

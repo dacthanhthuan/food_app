@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:padding="10dp"
+    android:layout_margin="10dp"
+    android:background="@drawable/bg_radius"
     android:layout_height="wrap_content">
 
 <androidx.cardview.widget.CardView
@@ -35,7 +37,7 @@
         android:padding="5dp"
         android:textSize="23sp"
         android:layout_marginStart="32dp"
-        app:layout_goneMarginTop="8dp" />
+        app:layout_goneMarginTop="8dp"/>
 
     <TextView
         android:id="@+id/gia"
@@ -46,8 +48,7 @@
         android:textColor="#0027FF"
         android:padding="5dp"
         android:text="Giá"
-        android:textSize="22sp"
-       />
+        android:textSize="22sp"/>
 
     </LinearLayout>
 </LinearLayout>

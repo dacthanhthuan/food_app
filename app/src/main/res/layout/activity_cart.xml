@@ -7,60 +7,70 @@
     android:orientation="vertical"
     tools:context=".CartActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginVertical="10dp"
+        android:text="My Cart"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCart"
         android:layout_width="match_parent"
-        android:layout_height="630dp" />
+        android:layout_height="550dp" />
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@drawable/bottom_background"
-        android:layout_height="match_parent">
+        android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:padding="5dp"
-        android:weightSum="1"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
             android:padding="5dp"
-            android:layout_gravity="center_vertical"
-            android:text="Tổng tiền: "
-            android:textColor="#323E3E"
-            android:textSize="25sp"
-            />
+            android:weightSum="1">
 
-        <TextView
-            android:id="@+id/cart_total"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:padding="5dp"
-            android:text="0 Đ"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:textColor="#323E3E"
-            android:textSize="23sp"
-            android:textStyle="italic|bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:padding="5dp"
+                android:text="Tổng tiền: "
+                android:textColor="#323E3E"
+                android:textSize="25sp" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/cart_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:padding="5dp"
+                android:text="0 Đ"
+                android:textColor="#323E3E"
+                android:textSize="23sp"
+                android:textStyle="italic|bold" />
+
+        </LinearLayout>
+
         <Button
+            android:id="@+id/checkout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:textColor="#D6F8F8"
-            android:text="Buy Now"
+            android:background="@drawable/btn_logout"
             android:backgroundTint="#5E7B6F"
-            android:background="@drawable/btn_logout"/>
+            android:text="Buy Now"
+            android:textColor="#D6F8F8" />
 
     </LinearLayout>
 </LinearLayout>

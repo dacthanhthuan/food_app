@@ -2,12 +2,17 @@ package com.dtt.thanhthuan.bottomnavigation.ui;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -20,6 +25,7 @@ import android.os.Handler;
 import android.speech.RecognizerIntent;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,12 +64,13 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import me.relex.circleindicator.CircleIndicator3;
 
 public class FragmentA extends Fragment {
 
-    private static final int REQUEST_CODE = 1234;
+    private static final int av = 100;
 
     ImageView shop_cart1;
 
@@ -106,6 +113,10 @@ public class FragmentA extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         dbHelper = new DBHelper(getActivity());
+
+
+
+
         ImageView speakButton = view.findViewById(R.id.speakButton);
 
         //search voice
@@ -210,15 +221,15 @@ public class FragmentA extends Fragment {
         Response.ErrorListener thatbai = new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
             }
         };
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(SERVER.chudepath, thanhcong, thatbai);
         requestQueue.add(jsonArrayRequest);
 
-        adapter_chude = new ADAPTER_CHUDE(datachude, getContext());
+        adapter_chude = new ADAPTER_CHUDE(datachude, getActivity());
         rvChude.setAdapter(adapter_chude);
-        rvChude.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        rvChude.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
     }
 
     void LoadSanPham() {
@@ -300,15 +311,9 @@ public class FragmentA extends Fragment {
         detail_addtocart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /** ------- NOTE ---*/
-//                SANPHAM sanpham = new SANPHAM(sp.getTensanpham(), sp.getHinhsanpham(), sp.getGiasanpham());
+                // Chuyển màn hình qua CART
                 Intent intent1 = new Intent(getActivity(), CartActivity.class);
-//                intent1.putExtra("id", sanpham.getMasanpham());
-//                intent1.putExtra("name", sanpham.getTensanpham());
-//                intent1.putExtra("image", sanpham.getHinhsanpham());
-//                intent1.putExtra("price", sanpham.getGiasanpham() + "");
-//                intent1.putExtra("quantity", sanpham.getSoluong() + "");
-                //gọi hàm insert ở đây luôn
+                // Thêm sản phẩm vào CART
                 dbHelper.insertProduct(sp.getMasanpham(), sp.getTensanpham(), sp.getHinhsanpham(), sp.getGiasanpham(), 1);
 
                 startActivity(intent1);
@@ -317,25 +322,32 @@ public class FragmentA extends Fragment {
         dialog.show();
     }
 
-    private void startVoiceRecognitionActivity() {
-        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak something...");
-        //Hàm bị Depricated r
-        startActivityForResult(intent, REQUEST_CODE);
+    // Search Voice
+    public void startVoiceRecognitionActivity() {
+        Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        i.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say Something!");
+
+        try {
+            someActivityResultLauncher.launch(i);
+        } catch (ActivityNotFoundException a) {
+            Toast.makeText(getActivity(), "Sorry! Your device doesn't support speech recognition", Toast.LENGTH_LONG).show();
+        }
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            if (matches != null && !matches.isEmpty()) {
-                String text = matches.get(0);
-                home_edtSearch.setText(text);
-            }
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
+    ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    Intent i = result.getData();
+                    if (i != null) {
+                        List<String> resultData = i.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                        String text = resultData.get(0);
+                        home_edtSearch.setText(text);
+                    }
+                }
+            });
+
 
 }

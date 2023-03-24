@@ -1,15 +1,19 @@
 package com.dtt.thanhthuan.bottomnavigation;
 
+import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.dtt.thanhthuan.bottomnavigation.ui.FragmentA;
 import com.dtt.thanhthuan.bottomnavigation.ui.FragmentB;
+import com.dtt.thanhthuan.bottomnavigation.ui.FragmentC;
 import com.dtt.thanhthuan.bottomnavigation.ui.FragmentD;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -26,6 +30,14 @@ public class BottomNavigation extends AppCompatActivity {
         // ánh xạ
         bottomNavigationView = findViewById(R.id.bottomnavigation);
 
+        // bottom chứa fragment nhận email sau khi login
+        Intent intent = getIntent();
+        String email = intent.getStringExtra("email");
+
+        Intent intent1 = new Intent(BottomNavigation.this, CheckOutActivity.class);
+        intent1.putExtra("email",email);
+
+
         OpenFragment(new FragmentA());
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -40,7 +52,7 @@ public class BottomNavigation extends AppCompatActivity {
                         fragment = new FragmentB();
                         break;
                     case R.id.mnuNotifications:
-                        fragment = new FragmentD();
+                        fragment = new FragmentC();
                         break;
                     case R.id.mnuSuppervíor:
                         fragment = new FragmentD();

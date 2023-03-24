@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -50,5 +51,12 @@ dependencies {
 
     //gg auth
     implementation 'com.google.android.gms:play-services-auth:20.4.1'
+
+    //login with fb
+    implementation 'com.facebook.android:facebook-android-sdk:latest.release'
+    implementation platform('com.google.firebase:firebase-bom:31.2.3')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-messaging'
+
 
 }

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "948453270874",
+    "project_id": "dack-b6a5e",
+    "storage_bucket": "dack-b6a5e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:948453270874:android:c767b87a1a0c66530bbf63",
+        "android_client_info": {
+          "package_name": "com.dtt.thanhthuan.bottomnavigation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "948453270874-luf8k2tkt8kutgu2s2eplgoj6trve8i6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dtt.thanhthuan.bottomnavigation",
+            "certificate_hash": "45676044b1d456a9bff88ecc53697dccbd974a6a"
+          }
+        },
+        {
+          "client_id": "948453270874-dhs956377ta8d8r09kgs5pq9pnbfi04t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCp2wGfG5dyUcaGnXwHPSjnAKdnUZjdBZ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "948453270874-dhs956377ta8d8r09kgs5pq9pnbfi04t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

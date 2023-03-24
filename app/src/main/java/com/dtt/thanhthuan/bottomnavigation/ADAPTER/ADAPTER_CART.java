@@ -49,11 +49,13 @@ public class ADAPTER_CART extends RecyclerView.Adapter<ADAPTER_CART.ADAPTERCARTV
 
     @Override
     public void onBindViewHolder(@NonNull ADAPTERCARTVIEWHOLDER holder, int position) {
+        dbHelper = new DBHelper(context.getApplicationContext());
         SANPHAM sp = data.get(position);
         // gắn dữ liệu cho TÊN và GIÁ
         holder.cart_name.setText(sp.tensanpham);
         holder.cart_price.setText(formatPrice.format(sp.giasanpham) + " Đ");
         holder.cart_quantity.setText(sp.getSoluong() + "");
+
         // Gắn dữ liệu HÌNH SẢN PHẨM
         Picasso.get().load(SERVER.imgsanpham + sp.hinhsanpham).into(holder.cart_img);
         holder.itemView.startAnimation(AnimationUtils.loadAnimation(context, R.anim.anim_recycleview));
@@ -64,11 +66,12 @@ public class ADAPTER_CART extends RecyclerView.Adapter<ADAPTER_CART.ADAPTERCARTV
 //                dbHelper
 //            }
 //        });
+
         // Xóa sản phẩm
         holder.cart_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            notifications(sp);
+                notifications(sp);
             }
         });
 
@@ -77,7 +80,9 @@ public class ADAPTER_CART extends RecyclerView.Adapter<ADAPTER_CART.ADAPTERCARTV
             public void onClick(View v) {
                 sp.setSoluong(sp.getSoluong() + 1);
                 holder.cart_quantity.setText(String.valueOf(sp.getSoluong()));
-                updateTotalQuantity();
+                updateTotal();
+                // cập nhật số lượng
+                dbHelper.updateProductQuantityById(sp.getMasanpham(), sp.getSoluong());
             }
         });
 
@@ -87,7 +92,9 @@ public class ADAPTER_CART extends RecyclerView.Adapter<ADAPTER_CART.ADAPTERCARTV
                 if (sp.getSoluong() > 1) {
                     sp.setSoluong(sp.getSoluong() - 1);
                     holder.cart_quantity.setText(String.valueOf(sp.getSoluong()));
-                    updateTotalQuantity();
+                    updateTotal();
+                    // cập nhật số lượng
+                    dbHelper.updateProductQuantityById(sp.getMasanpham(), sp.getSoluong());
                 }
             }
         });
@@ -99,7 +106,8 @@ public class ADAPTER_CART extends RecyclerView.Adapter<ADAPTER_CART.ADAPTERCARTV
         return data.size();
     }
 
-    private void updateTotalDelete() {
+    // phương thức cập nhật tổng tiền
+    private void updateTotal() {
         double total = 0;
         for (SANPHAM sp : data) {
             total += sp.getGiasanpham() * sp.getSoluong();
@@ -107,13 +115,6 @@ public class ADAPTER_CART extends RecyclerView.Adapter<ADAPTER_CART.ADAPTERCARTV
         ((CartActivity) context).updateTotal(total);
     }
 
-    private void updateTotalQuantity() {
-        double total = 0;
-        for (SANPHAM sp : data) {
-            total += sp.getGiasanpham() * sp.getSoluong();
-        }
-        ((CartActivity) context).updateTotal(total);
-    }
 
     public class ADAPTERCARTVIEWHOLDER extends RecyclerView.ViewHolder {
         // Khai báo
@@ -138,6 +139,8 @@ public class ADAPTER_CART extends RecyclerView.Adapter<ADAPTER_CART.ADAPTERCARTV
 
         }
     }
+
+    // Thông báo xóa sản phẩm
     void notifications(SANPHAM sp) {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
         builder1.setMessage("Bạn có chắc muốn xóa sản phẩm này ?");
@@ -161,7 +164,7 @@ public class ADAPTER_CART extends RecyclerView.Adapter<ADAPTER_CART.ADAPTERCARTV
                         dbHelper.deleteProductById(sp.getMasanpham());
                         data.remove(sp);
                         notifyDataSetChanged();
-                        updateTotalDelete();
+                        updateTotal();
 
                         Toast.makeText(context, "Xóa sản phẩm thành công", Toast.LENGTH_SHORT).show();
                     }

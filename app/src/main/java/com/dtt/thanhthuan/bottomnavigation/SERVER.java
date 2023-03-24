@@ -1,7 +1,7 @@
 package com.dtt.thanhthuan.bottomnavigation;
 
 public class SERVER {
-    public static String serverip = "http://192.168.100.13/";
+    public static String serverip = "http://192.168.1.12/";
     public static String chudepath = serverip + "sqlfood/laychude.php";
     public static String sanphampath = serverip + "sqlfood/laysanpham.php";
     public static String sanphamtheochudepath = serverip + "sqlfood/laychudesp.php";
