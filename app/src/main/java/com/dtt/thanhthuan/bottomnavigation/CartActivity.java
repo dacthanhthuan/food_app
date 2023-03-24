@@ -75,12 +75,16 @@ public class CartActivity extends AppCompatActivity {
         cart_total.setText(formatPrice.format(totalPrice) + " Đ");
 
         // chuyển sang màn hình CHECKOUT
-        double finalTotalPrice = totalPrice;
         checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intentt = getIntent();
+                String email = intentt.getStringExtra("email");
+
+
                 Intent intent = new Intent(CartActivity.this, CheckOutActivity.class);
-                intent.putExtra("tt", finalTotalPrice);
+                intent.putExtra("email",email);
+                intent.putExtra("tt", cart_total.getText().toString().trim());
                 startActivity(intent);
 
             }

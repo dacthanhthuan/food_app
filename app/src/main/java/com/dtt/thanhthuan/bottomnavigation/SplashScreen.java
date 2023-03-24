@@ -13,7 +13,7 @@ public class SplashScreen extends AppCompatActivity {
         Thread timer = new Thread() {
             public void run() {
                 try {
-                    sleep(5000); // Set thời gian 5 giây hiển thị màn hình SplashScreen
+                    sleep(3000); // Set thời gian 4 giây hiển thị màn hình SplashScreen
                 } catch (InterruptedException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();

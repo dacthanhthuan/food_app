@@ -53,7 +53,7 @@ public class ADAPTER_CART extends RecyclerView.Adapter<ADAPTER_CART.ADAPTERCARTV
         SANPHAM sp = data.get(position);
         // gắn dữ liệu cho TÊN và GIÁ
         holder.cart_name.setText(sp.tensanpham);
-        holder.cart_price.setText(formatPrice.format(sp.giasanpham) + " Đ");
+        holder.cart_price.setText(formatPrice.format(sp.getGiasanpham()) + " Đ");
         holder.cart_quantity.setText(sp.getSoluong() + "");
 
         // Gắn dữ liệu HÌNH SẢN PHẨM

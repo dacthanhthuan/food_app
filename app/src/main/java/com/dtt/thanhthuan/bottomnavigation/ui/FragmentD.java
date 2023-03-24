@@ -1,6 +1,5 @@
 package com.dtt.thanhthuan.bottomnavigation.ui;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -10,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +24,6 @@ import com.dtt.thanhthuan.bottomnavigation.LoginActivity;
 import com.dtt.thanhthuan.bottomnavigation.R;
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -35,9 +34,6 @@ import com.google.android.gms.tasks.Task;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.concurrent.Executor;
 
 
 public class FragmentD extends Fragment {
@@ -61,6 +57,10 @@ public class FragmentD extends Fragment {
         profile_fullname = view.findViewById(R.id.profile_fullname);
         profile_Password = view.findViewById(R.id.profile_Password);
         btn_Logout = view.findViewById(R.id.btn_Logout);
+
+        FragmentActivity intent = getActivity();
+        String emaildb = intent.getIntent().getStringExtra("email");
+        profile_Email.setText(emaildb);
 
         //Gmail
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();

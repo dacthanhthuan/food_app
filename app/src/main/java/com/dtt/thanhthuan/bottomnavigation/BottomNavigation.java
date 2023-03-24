@@ -30,12 +30,11 @@ public class BottomNavigation extends AppCompatActivity {
         // ánh xạ
         bottomNavigationView = findViewById(R.id.bottomnavigation);
 
-        // bottom chứa fragment nhận email sau khi login
         Intent intent = getIntent();
         String email = intent.getStringExtra("email");
 
         Intent intent1 = new Intent(BottomNavigation.this, CheckOutActivity.class);
-        intent1.putExtra("email",email);
+        intent1.putExtra("email", email);
 
 
         OpenFragment(new FragmentA());

@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText edtEmail, edtPassword;
     public String email, password;
     private Button btnLogin, btn_Chuyentrang;
-    private String URL = "http://192.168.1.12/sqlfood/login.php";
+    private String URL = "http://192.168.100.3/sqlfood/login.php";
     LinearLayout btnGG, btnFB;
 
     GoogleSignInOptions gso;

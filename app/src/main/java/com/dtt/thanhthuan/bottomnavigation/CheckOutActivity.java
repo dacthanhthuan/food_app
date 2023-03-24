@@ -30,9 +30,11 @@ public class CheckOutActivity extends AppCompatActivity {
     private EditText edtCart_Address, edtCart_danhgia;
     private Button btn_xacnhan;
 
-    private String URL = "http://192.168.1.12/sqlfood/donhang.php";
+    private String URL = "http://192.168.100.3/sqlfood/donhang.php";
 
     private String danhgia, diachi;
+
+    DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,16 +48,21 @@ public class CheckOutActivity extends AppCompatActivity {
         edtCart_danhgia = findViewById(R.id.edtCart_danhgia);
         btn_xacnhan = findViewById(R.id.btn_xacnhan);
 
+        dbHelper = new DBHelper(this);
 
         Intent intent = getIntent();
         String email = intent.getStringExtra("email");
+        // Lấy dữ liệu tổng tiền
         String price = intent.getStringExtra("tt");
 
-        Result_Email.setText("dtt2001@gmail.com");
+        // chưa lấy được Email từ BottomNavigation
+        Result_Email.setText("dtt2003@gmail.com");
+        // get Tổng tiền
         Result_Total.setText(price);
 
         danhgia = diachi = "";
 
+        // Đẩy dữ liệu lên đơn hàng sau khi đặt hàng
         btn_xacnhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,10 +76,13 @@ public class CheckOutActivity extends AppCompatActivity {
                             if (response.equals("Success")) {
                                 Toast.makeText(CheckOutActivity.this, "Đặt hàng thành công", Toast.LENGTH_SHORT).show();
 
+                                // Xóa tất cả sản phẩm sau khi mua hàng trong giỏ hàng
+                                dbHelper.deleteAllProducts();
 
-
+                                // Intent sang trang chủ
                                 Intent intent = new Intent(CheckOutActivity.this, BottomNavigation.class);
                                 startActivity(intent);
+
                             } else if (response.equals("Failure")) {
                                 Toast.makeText(CheckOutActivity.this, "Đặt hàng thất bại", Toast.LENGTH_SHORT).show();
                             }

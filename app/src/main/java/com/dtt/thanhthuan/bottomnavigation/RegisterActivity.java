@@ -35,7 +35,7 @@ import java.util.regex.Pattern;
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText edtR_Email, edtR_Password, edtR_FullName, edtR_Address, edtR_Phone;
-    private String URL = "http://192.168.1.12/sqlfood/register.php";
+    private String URL = "http://192.168.100.3/sqlfood/register.php";
     private String email, password, fullName, address, phone;
     Button btnRegister;
 

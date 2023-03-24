@@ -73,4 +73,10 @@ public class DBHelper {
         values.put("SoLuong", quantity);
         db.update("CART", values, "MaSP=?", new String[]{id});
     }
+
+    // Xóa tất cả sản phẩm trong giỏ hàng
+    public void deleteAllProducts() {
+        db.delete("CART", null, null);
+        db.close();
+    }
 }
